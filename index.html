@@ -1026,6 +1026,10 @@ const MOODS = [
 
 let selectedMood = null;
 
+// Burn paper config (content is never stored — only a count)
+const BURN_COUNT_KEY = 'fortune_tree_burn_count';
+let burnInProgress = false;
+
 // ==================== STATE ====================
 let state = loadState();
 
@@ -1665,9 +1669,6 @@ function updateMoodHistoryToggleLabel() {
 
 // ==================== BURN PAPER (化煞金爐) ====================
 // Stores only a count — never the user's words. Content is intentionally ephemeral.
-const BURN_COUNT_KEY = 'fortune_tree_burn_count';
-let burnInProgress = false;
-
 function getBurnCount() {
   return parseInt(localStorage.getItem(BURN_COUNT_KEY) || '0', 10) || 0;
 }
