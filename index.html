@@ -604,6 +604,242 @@
     letter-spacing: 1px;
   }
 
+  /* Burn paper (化煞金爐) */
+  .burn-section {
+    width: 100%;
+    max-width: 480px;
+    padding: 20px 16px 12px;
+    margin-top: 8px;
+    border-top: 1px dashed rgba(255,215,0,0.15);
+  }
+  .burn-title {
+    font-size: 0.9em;
+    color: #ff8844;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+  .burn-title .sub {
+    display: block;
+    font-size: 0.7em;
+    color: #7a6a50;
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin-top: 3px;
+  }
+  .burn-textarea {
+    width: 100%;
+    min-height: 70px;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 0.88em;
+    color: #f0e6d3;
+    background: rgba(60,30,10,0.25);
+    border: 1px solid rgba(255,140,60,0.2);
+    border-radius: 12px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    line-height: 1.6;
+  }
+  .burn-textarea:focus {
+    border-color: rgba(255,140,60,0.5);
+    background: rgba(60,30,10,0.35);
+  }
+  .burn-textarea::placeholder { color: #665540; }
+  .burn-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    gap: 8px;
+  }
+  .burn-counter {
+    font-size: 0.72em;
+    color: #7a6a50;
+  }
+  .burn-counter b { color: #ff9955; font-weight: bold; }
+  .burn-btn {
+    padding: 10px 22px;
+    font-size: 0.88em;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #ff6633, #cc3311);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 12px rgba(255,80,20,0.3);
+    letter-spacing: 1px;
+  }
+  .burn-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 18px rgba(255,100,40,0.5);
+  }
+  .burn-btn:disabled {
+    background: linear-gradient(135deg, #555, #444);
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  .burn-hint {
+    font-size: 0.7em;
+    color: #554530;
+    text-align: center;
+    margin-top: 6px;
+    min-height: 1em;
+  }
+
+  /* Burn stage (animation area) */
+  .burn-stage {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    pointer-events: none;
+  }
+  .burn-stage.active {
+    height: 280px;
+    margin-top: 12px;
+  }
+  .burn-paper {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 82%;
+    max-width: 340px;
+    min-height: 130px;
+    max-height: 200px;
+    padding: 22px 24px;
+    background: linear-gradient(135deg, #f5e8c8, #eddab0);
+    color: #3a2510;
+    font-size: 0.85em;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+    border-radius: 3px;
+    background-image:
+      linear-gradient(135deg, #f5e8c8, #eddab0),
+      repeating-linear-gradient(0deg, rgba(180,140,80,0.08) 0 1px, transparent 1px 28px);
+    background-blend-mode: multiply;
+  }
+  .burn-paper.burning {
+    animation: paperBurn 4s ease-in forwards;
+  }
+  @keyframes paperBurn {
+    0%   { filter: none; clip-path: inset(0 0 0% 0); }
+    15%  {
+      box-shadow: 0 0 40px rgba(255,100,0,0.6), inset 0 -20px 30px rgba(255,140,0,0.4);
+      filter: brightness(1.15);
+    }
+    35%  {
+      filter: brightness(1.1) contrast(1.1) sepia(0.2);
+      clip-path: polygon(0 0, 100% 0, 100% 82%, 92% 84%, 85% 80%, 75% 86%, 65% 82%, 55% 87%, 45% 81%, 35% 85%, 25% 80%, 15% 86%, 8% 82%, 0 85%);
+      transform: translateX(-50%) rotate(-3deg) translateY(-3px);
+    }
+    55%  {
+      filter: brightness(0.85) sepia(0.7) hue-rotate(-20deg);
+      clip-path: polygon(0 0, 100% 0, 100% 55%, 90% 60%, 80% 52%, 70% 62%, 60% 55%, 48% 63%, 38% 55%, 28% 62%, 18% 55%, 8% 60%, 0 55%);
+      transform: translateX(-50%) rotate(-4deg) translateY(-10px);
+    }
+    75%  {
+      filter: brightness(0.5) sepia(1) hue-rotate(-30deg);
+      clip-path: polygon(0 0, 100% 0, 100% 25%, 88% 30%, 75% 22%, 60% 28%, 45% 22%, 30% 28%, 15% 22%, 0 26%);
+      transform: translateX(-50%) rotate(-5deg) translateY(-20px);
+      opacity: 0.7;
+    }
+    100% {
+      clip-path: polygon(0 0, 100% 0, 100% 0%, 0 0%);
+      opacity: 0;
+      transform: translateX(-50%) rotate(-8deg) translateY(-40px);
+    }
+  }
+
+  /* Flames */
+  .burn-flames {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 340px;
+    height: 80px;
+    pointer-events: none;
+  }
+  .flame {
+    position: absolute;
+    bottom: 0;
+    width: 40px;
+    height: 70px;
+    background: radial-gradient(circle at 50% 85%, #fff2aa 0%, #ffaa00 25%, #ff5511 55%, transparent 75%);
+    border-radius: 50% 50% 25% 25%;
+    filter: blur(4px);
+    mix-blend-mode: screen;
+    animation: flicker 0.25s ease-in-out infinite alternate;
+    opacity: 0;
+  }
+  .burn-stage.active .flame {
+    animation: flameIgnite 0.4s ease-out forwards, flicker 0.25s ease-in-out 0.4s infinite alternate;
+  }
+  @keyframes flameIgnite {
+    0%   { opacity: 0; transform: translateY(30px) scaleY(0.3); }
+    100% { opacity: 1; transform: translateY(0) scaleY(1); }
+  }
+  @keyframes flicker {
+    0%   { transform: scaleY(1)   translateX(0)   skewX(0deg); opacity: 0.85; }
+    50%  { transform: scaleY(1.15) translateX(-2px) skewX(-3deg); opacity: 1; }
+    100% { transform: scaleY(0.95) translateX(2px)  skewX(2deg); opacity: 0.95; }
+  }
+
+  /* Ash particles */
+  .ash {
+    position: absolute;
+    bottom: 30%;
+    width: 5px;
+    height: 5px;
+    background: radial-gradient(circle, #ffaa55 0%, #663322 55%, transparent 100%);
+    border-radius: 50%;
+    opacity: 0.9;
+    pointer-events: none;
+    animation: ashRise 2.8s ease-out forwards;
+  }
+  @keyframes ashRise {
+    0%   { opacity: 1;   transform: translateY(0)    translateX(0)   scale(1); }
+    40%  { opacity: 0.8; transform: translateY(-80px) translateX(var(--dx, -8px)) scale(0.8); }
+    100% { opacity: 0;   transform: translateY(-200px) translateX(calc(var(--dx, -8px) * 3)) scale(0.3); }
+  }
+
+  /* Aftermath message */
+  .burn-aftermath {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffd700;
+    font-size: 1.4em;
+    letter-spacing: 3px;
+    animation: aftermath 2.4s ease-out forwards;
+  }
+  .burn-aftermath .sub {
+    font-size: 0.55em;
+    color: #a89070;
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+  @keyframes aftermath {
+    0%   { opacity: 0; transform: scale(0.85); filter: blur(6px); }
+    25%  { opacity: 1; transform: scale(1);    filter: blur(0); }
+    75%  { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.1); }
+  }
+
   /* Scrollbar */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -691,6 +927,25 @@
   <div class="mood-toast" id="moodToast"></div>
   <div class="mood-history-toggle" id="moodHistoryToggle" onclick="toggleMoodHistory()">▼ 查看心情紀錄</div>
   <div class="mood-history" id="moodHistory"></div>
+</div>
+
+<div class="burn-section">
+  <div class="burn-title">
+    🔥 化煞金爐
+    <span class="sub">寫下放不下的事，託付給火，化為灰燼隨風而去</span>
+  </div>
+  <textarea
+    class="burn-textarea"
+    id="burnText"
+    maxlength="500"
+    placeholder="讓你煩惱、遺憾、放不下的事……寫下來，按下焚化，不會留下任何紀錄。"
+  ></textarea>
+  <div class="burn-actions">
+    <span class="burn-counter">已化解 <b id="burnCount">0</b> 則</span>
+    <button class="burn-btn" id="burnBtn" onclick="burnPaper()">🔥 點火焚化</button>
+  </div>
+  <div class="burn-hint" id="burnHint"></div>
+  <div class="burn-stage" id="burnStage" aria-hidden="true"></div>
 </div>
 
 <div class="demo-section">
@@ -1247,6 +1502,9 @@ updateMoodHistoryToggleLabel();
   updateMoodCount();
 })();
 
+// Burn paper init
+setBurnCount(getBurnCount());
+
 // Check day rollover periodically
 setInterval(() => {
   if (state.todayDate !== getTodayStr()) {
@@ -1403,6 +1661,114 @@ function updateMoodHistoryToggleLabel() {
   toggle.textContent = el.classList.contains('open')
     ? '▲ 收起紀錄'
     : `▼ 查看心情紀錄${count ? `（${count}）` : ''}`;
+}
+
+// ==================== BURN PAPER (化煞金爐) ====================
+// Stores only a count — never the user's words. Content is intentionally ephemeral.
+const BURN_COUNT_KEY = 'fortune_tree_burn_count';
+let burnInProgress = false;
+
+function getBurnCount() {
+  return parseInt(localStorage.getItem(BURN_COUNT_KEY) || '0', 10) || 0;
+}
+
+function setBurnCount(n) {
+  localStorage.setItem(BURN_COUNT_KEY, String(n));
+  document.getElementById('burnCount').textContent = n;
+}
+
+function showBurnHint(msg, color) {
+  const el = document.getElementById('burnHint');
+  el.style.color = color || '#a89070';
+  el.textContent = msg;
+  clearTimeout(showBurnHint._t);
+  showBurnHint._t = setTimeout(() => { el.textContent = ''; }, 2600);
+}
+
+function burnPaper() {
+  if (burnInProgress) return;
+
+  const ta = document.getElementById('burnText');
+  const text = ta.value.trim();
+  if (!text) {
+    showBurnHint('先寫下你想放下的事，再點火', '#ffaa00');
+    ta.focus();
+    return;
+  }
+
+  burnInProgress = true;
+  const btn = document.getElementById('burnBtn');
+  btn.disabled = true;
+  btn.textContent = '焚化中…';
+
+  const stage = document.getElementById('burnStage');
+  stage.innerHTML = '';
+  stage.classList.add('active');
+
+  // Paper
+  const paper = document.createElement('div');
+  paper.className = 'burn-paper';
+  paper.textContent = text;
+  stage.appendChild(paper);
+
+  // Flames (5 staggered)
+  const flames = document.createElement('div');
+  flames.className = 'burn-flames';
+  for (let i = 0; i < 6; i++) {
+    const f = document.createElement('div');
+    f.className = 'flame';
+    f.style.left = `calc(${10 + i * 15}% - 20px)`;
+    f.style.animationDelay = (i * 0.08) + 's';
+    flames.appendChild(f);
+  }
+  stage.appendChild(flames);
+
+  // Ignite paper a beat after flames
+  setTimeout(() => paper.classList.add('burning'), 500);
+
+  // Ash particles — sprinkle during burn
+  const ashTimer = setInterval(() => {
+    const ash = document.createElement('div');
+    ash.className = 'ash';
+    const startLeft = 18 + Math.random() * 64;
+    ash.style.left = startLeft + '%';
+    ash.style.setProperty('--dx', (Math.random() * 30 - 15) + 'px');
+    ash.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+    stage.appendChild(ash);
+    setTimeout(() => ash.remove(), 4000);
+  }, 120);
+
+  // Wrap up after the 4s paper burn completes
+  setTimeout(() => {
+    clearInterval(ashTimer);
+    paper.remove();
+    // Let existing flames die out
+    flames.style.transition = 'opacity 0.8s';
+    flames.style.opacity = '0';
+    setTimeout(() => flames.remove(), 900);
+
+    // Aftermath
+    const after = document.createElement('div');
+    after.className = 'burn-aftermath';
+    after.innerHTML = '🕊 煙消雲散<div class="sub">一切歸於寧靜</div>';
+    stage.appendChild(after);
+
+    // Increment counter (only the count, not content)
+    setBurnCount(getBurnCount() + 1);
+
+    // Clear input ready for next
+    ta.value = '';
+
+    // Close stage, re-enable button
+    setTimeout(() => {
+      stage.classList.remove('active');
+      stage.innerHTML = '';
+      btn.disabled = false;
+      btn.textContent = '🔥 點火焚化';
+      burnInProgress = false;
+      showBurnHint('已化解。深呼吸，繼續前行 🌿', '#6abf4b');
+    }, 2400);
+  }, 4500);
 }
 
 // ==================== DEMO MODE ====================
