@@ -421,6 +421,189 @@
   .demo-auto-bar button:disabled { background: #444; color: #888; cursor: not-allowed; transform: none; box-shadow: none; }
   .demo-auto-bar .speed-label { font-size: 0.7em; color: #a89070; }
 
+  /* Mood journal */
+  .mood-section {
+    width: 100%;
+    max-width: 480px;
+    padding: 12px 16px 8px;
+  }
+  .mood-title {
+    font-size: 0.9em;
+    color: #ffd700;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+  .mood-title .sub {
+    font-size: 0.75em;
+    color: #a89070;
+    font-weight: normal;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 2px;
+  }
+  .mood-picker {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .mood-chip {
+    flex: 1;
+    padding: 8px 2px;
+    font-size: 1.3em;
+    background: rgba(255,215,0,0.06);
+    border: 1px solid rgba(255,215,0,0.15);
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .mood-chip:hover { background: rgba(255,215,0,0.12); border-color: rgba(255,215,0,0.3); }
+  .mood-chip.selected {
+    background: rgba(255,215,0,0.2);
+    border-color: #ffd700;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255,215,0,0.25);
+  }
+  .mood-chip .mood-label {
+    display: block;
+    font-size: 0.55em;
+    color: #a89070;
+    margin-top: 2px;
+    letter-spacing: 0;
+  }
+  .mood-chip.selected .mood-label { color: #ffd700; }
+  .mood-textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 0.88em;
+    color: #f0e6d3;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,215,0,0.15);
+    border-radius: 12px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    line-height: 1.6;
+  }
+  .mood-textarea:focus {
+    border-color: rgba(255,215,0,0.5);
+    background: rgba(255,255,255,0.06);
+  }
+  .mood-textarea::placeholder { color: #665540; }
+  .mood-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    gap: 8px;
+  }
+  .mood-count {
+    font-size: 0.7em;
+    color: #665540;
+  }
+  .mood-save-btn {
+    padding: 8px 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+    color: #1a0f0a;
+    background: linear-gradient(135deg, #ffd700, #ffaa00);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 10px rgba(255,215,0,0.2);
+  }
+  .mood-save-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(255,215,0,0.35);
+  }
+  .mood-save-btn:disabled {
+    background: linear-gradient(135deg, #555, #444);
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  .mood-toast {
+    font-size: 0.75em;
+    color: #6abf4b;
+    text-align: center;
+    min-height: 1.2em;
+    margin-top: 4px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .mood-toast.show { opacity: 1; }
+
+  .mood-history-toggle {
+    font-size: 0.75em;
+    color: #a89070;
+    cursor: pointer;
+    text-align: center;
+    padding: 8px;
+    margin-top: 4px;
+  }
+  .mood-history-toggle:hover { color: #ffd700; }
+  .mood-history {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .mood-history.open { max-height: 380px; overflow-y: auto; }
+  .mood-entry {
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    background: rgba(255,255,255,0.03);
+    border-left: 2px solid rgba(255,215,0,0.3);
+    border-radius: 6px;
+    position: relative;
+  }
+  .mood-entry .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.72em;
+    color: #887860;
+    margin-bottom: 4px;
+  }
+  .mood-entry .entry-mood { font-size: 1.1em; }
+  .mood-entry .entry-text {
+    font-size: 0.82em;
+    color: #d0c4a8;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .mood-entry .entry-del {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    font-size: 0.7em;
+    color: #665540;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .mood-entry .entry-del:hover { color: #ff6b6b; background: rgba(255,100,100,0.08); }
+  .mood-history-empty {
+    text-align: center;
+    font-size: 0.78em;
+    color: #665540;
+    padding: 20px;
+  }
+  .mood-date-group {
+    font-size: 0.7em;
+    color: #7a6a50;
+    padding: 8px 4px 4px;
+    letter-spacing: 1px;
+  }
+
   /* Scrollbar */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -487,6 +670,27 @@
 <div class="log-section">
   <div class="log-toggle" id="logToggle" onclick="toggleLog()">▼ 今日喝水記錄</div>
   <div class="log-list" id="logList"></div>
+</div>
+
+<div class="mood-section">
+  <div class="mood-title">
+    ✍️ 心情筆記
+    <span class="sub">隨手寫下此刻的想法，為發財樹注入靈氣</span>
+  </div>
+  <div class="mood-picker" id="moodPicker"></div>
+  <textarea
+    class="mood-textarea"
+    id="moodInput"
+    maxlength="500"
+    placeholder="此刻在想什麼？一句話、一個念頭、一段抱怨、一份感恩……都可以寫下來。"
+  ></textarea>
+  <div class="mood-actions">
+    <span class="mood-count" id="moodCount">0 / 500</span>
+    <button class="mood-save-btn" id="moodSaveBtn" onclick="saveMood()">💾 儲存</button>
+  </div>
+  <div class="mood-toast" id="moodToast"></div>
+  <div class="mood-history-toggle" id="moodHistoryToggle" onclick="toggleMoodHistory()">▼ 查看心情紀錄</div>
+  <div class="mood-history" id="moodHistory"></div>
 </div>
 
 <div class="demo-section">
@@ -567,6 +771,7 @@ function defaultState() {
     lastDrinkTime: null,
     log: [],          // [{time, date}]
     lastActiveDate: null,
+    moods: [],        // [{id, ts, date, time, mood, text}]
   };
 }
 
@@ -574,6 +779,7 @@ function loadState() {
   try {
     const s = JSON.parse(localStorage.getItem('fortune_tree_state'));
     if (s && s.todayDate) {
+      if (!Array.isArray(s.moods)) s.moods = [];
       // Check if it's a new day
       if (s.todayDate !== getTodayStr()) {
         return rollOverDay(s);
@@ -964,12 +1170,14 @@ function closeLevelUp() {
 
 // ==================== RESET ====================
 function resetAll() {
-  if (confirm('確定要重置所有資料嗎？你的發財樹將從種子重新開始...')) {
+  if (confirm('確定要重置所有資料嗎？你的發財樹將從種子重新開始（心情紀錄也會一併清空）...')) {
     state = defaultState();
     saveState();
     updateUI();
     document.getElementById('cooldownText').textContent = '';
     document.getElementById('fortuneMsg').classList.remove('show');
+    renderMoodHistory();
+    updateMoodHistoryToggleLabel();
   }
 }
 
@@ -1010,6 +1218,22 @@ if (getRemainingCooldown() > 0) {
   startCooldownTimer();
 }
 
+// Mood journal init
+buildMoodPicker();
+renderMoodHistory();
+updateMoodHistoryToggleLabel();
+(function wireMoodInput() {
+  const input = document.getElementById('moodInput');
+  input.addEventListener('input', updateMoodCount);
+  input.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
+      saveMood();
+    }
+  });
+  updateMoodCount();
+})();
+
 // Check day rollover periodically
 setInterval(() => {
   if (state.todayDate !== getTodayStr()) {
@@ -1018,6 +1242,167 @@ setInterval(() => {
     updateUI();
   }
 }, 60000);
+
+// ==================== MOOD JOURNAL ====================
+const MOODS = [
+  { key: 'joy',    emoji: '😊', label: '開心' },
+  { key: 'calm',   emoji: '😌', label: '平靜' },
+  { key: 'grateful', emoji: '🙏', label: '感恩' },
+  { key: 'tired',  emoji: '😮‍💨', label: '疲憊' },
+  { key: 'anxious',emoji: '😟', label: '焦慮' },
+  { key: 'sad',    emoji: '🥲', label: '難過' },
+  { key: 'fired',  emoji: '🔥', label: '衝勁' },
+];
+
+let selectedMood = null;
+
+function buildMoodPicker() {
+  const picker = document.getElementById('moodPicker');
+  picker.innerHTML = '';
+  MOODS.forEach(m => {
+    const chip = document.createElement('div');
+    chip.className = 'mood-chip';
+    chip.dataset.key = m.key;
+    chip.innerHTML = `${m.emoji}<span class="mood-label">${m.label}</span>`;
+    chip.onclick = () => selectMood(m.key);
+    picker.appendChild(chip);
+  });
+}
+
+function selectMood(key) {
+  selectedMood = (selectedMood === key) ? null : key;
+  document.querySelectorAll('#moodPicker .mood-chip').forEach(chip => {
+    chip.classList.toggle('selected', chip.dataset.key === selectedMood);
+  });
+}
+
+function saveMood() {
+  const input = document.getElementById('moodInput');
+  const text = input.value.trim();
+  if (!text && !selectedMood) {
+    showMoodToast('請選個心情或寫點什麼 💭', '#ffaa00');
+    return;
+  }
+  const now = new Date();
+  const entry = {
+    id: now.getTime() + '-' + Math.random().toString(36).slice(2, 7),
+    ts: now.getTime(),
+    date: getTodayStr(),
+    time: now.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' }),
+    mood: selectedMood,
+    text: text,
+  };
+  state.moods.push(entry);
+  saveState();
+
+  // Reward: 2 coins per mood entry (soft reward)
+  state.totalCoins += 2;
+  saveState();
+
+  // Reset input
+  input.value = '';
+  selectedMood = null;
+  document.querySelectorAll('#moodPicker .mood-chip').forEach(c => c.classList.remove('selected'));
+  updateMoodCount();
+
+  // UI feedback
+  showMoodToast('已記錄 ✨ +2 金幣', '#6abf4b');
+  renderMoodHistory();
+  document.getElementById('totalCoins').textContent = state.totalCoins;
+
+  // Small particle reward
+  spawnCoinParticles(2);
+}
+
+function deleteMood(id) {
+  if (!confirm('確定刪除這則心情紀錄？')) return;
+  state.moods = state.moods.filter(m => m.id !== id);
+  saveState();
+  renderMoodHistory();
+}
+
+function showMoodToast(msg, color) {
+  const toast = document.getElementById('moodToast');
+  toast.textContent = msg;
+  toast.style.color = color || '#6abf4b';
+  toast.classList.add('show');
+  clearTimeout(showMoodToast._t);
+  showMoodToast._t = setTimeout(() => toast.classList.remove('show'), 2400);
+}
+
+function updateMoodCount() {
+  const input = document.getElementById('moodInput');
+  document.getElementById('moodCount').textContent = `${input.value.length} / 500`;
+}
+
+function formatDateLabel(dateStr) {
+  const today = getTodayStr();
+  const yesterday = getDateStr(new Date(Date.now() - 86400000));
+  if (dateStr === today) return '今天';
+  if (dateStr === yesterday) return '昨天';
+  return dateStr;
+}
+
+function renderMoodHistory() {
+  const container = document.getElementById('moodHistory');
+  if (!state.moods || state.moods.length === 0) {
+    container.innerHTML = '<div class="mood-history-empty">還沒有心情紀錄，寫下第一筆吧 ✍️</div>';
+    return;
+  }
+  const sorted = [...state.moods].sort((a, b) => b.ts - a.ts);
+  const groups = {};
+  sorted.forEach(m => {
+    (groups[m.date] = groups[m.date] || []).push(m);
+  });
+
+  let html = '';
+  Object.keys(groups).forEach(date => {
+    html += `<div class="mood-date-group">— ${formatDateLabel(date)} —</div>`;
+    groups[date].forEach(m => {
+      const moodInfo = MOODS.find(x => x.key === m.mood);
+      const moodEmoji = moodInfo ? moodInfo.emoji : '';
+      const moodLabel = moodInfo ? moodInfo.label : '';
+      const textHtml = escapeHtml(m.text) || '<span style="color:#665540;">(只記錄了心情)</span>';
+      html += `
+        <div class="mood-entry">
+          <button class="entry-del" onclick="deleteMood('${m.id}')" title="刪除">✕</button>
+          <div class="entry-head">
+            <span class="entry-mood">${moodEmoji} ${moodLabel}</span>
+            <span>🕐 ${m.time}</span>
+          </div>
+          <div class="entry-text">${textHtml}</div>
+        </div>
+      `;
+    });
+  });
+  container.innerHTML = html;
+}
+
+function escapeHtml(s) {
+  if (!s) return '';
+  return s.replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+function toggleMoodHistory() {
+  const el = document.getElementById('moodHistory');
+  const toggle = document.getElementById('moodHistoryToggle');
+  el.classList.toggle('open');
+  const count = (state.moods || []).length;
+  toggle.textContent = el.classList.contains('open')
+    ? '▲ 收起紀錄'
+    : `▼ 查看心情紀錄${count ? `（${count}）` : ''}`;
+}
+
+function updateMoodHistoryToggleLabel() {
+  const el = document.getElementById('moodHistory');
+  const toggle = document.getElementById('moodHistoryToggle');
+  const count = (state.moods || []).length;
+  toggle.textContent = el.classList.contains('open')
+    ? '▲ 收起紀錄'
+    : `▼ 查看心情紀錄${count ? `（${count}）` : ''}`;
+}
 
 // ==================== DEMO MODE ====================
 let demoMode = false;
