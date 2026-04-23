@@ -758,6 +758,19 @@ const FORTUNES = [
   '你的自律，就是最強的生財之道。',
 ];
 
+// ==================== MOOD CONFIG ====================
+const MOODS = [
+  { key: 'joy',    emoji: '😊', label: '開心' },
+  { key: 'calm',   emoji: '😌', label: '平靜' },
+  { key: 'grateful', emoji: '🙏', label: '感恩' },
+  { key: 'tired',  emoji: '😮‍💨', label: '疲憊' },
+  { key: 'anxious',emoji: '😟', label: '焦慮' },
+  { key: 'sad',    emoji: '🥲', label: '難過' },
+  { key: 'fired',  emoji: '🔥', label: '衝勁' },
+];
+
+let selectedMood = null;
+
 // ==================== STATE ====================
 let state = loadState();
 
@@ -1244,18 +1257,6 @@ setInterval(() => {
 }, 60000);
 
 // ==================== MOOD JOURNAL ====================
-const MOODS = [
-  { key: 'joy',    emoji: '😊', label: '開心' },
-  { key: 'calm',   emoji: '😌', label: '平靜' },
-  { key: 'grateful', emoji: '🙏', label: '感恩' },
-  { key: 'tired',  emoji: '😮‍💨', label: '疲憊' },
-  { key: 'anxious',emoji: '😟', label: '焦慮' },
-  { key: 'sad',    emoji: '🥲', label: '難過' },
-  { key: 'fired',  emoji: '🔥', label: '衝勁' },
-];
-
-let selectedMood = null;
-
 function buildMoodPicker() {
   const picker = document.getElementById('moodPicker');
   picker.innerHTML = '';
